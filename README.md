@@ -1,11 +1,7 @@
 # Projeto Integrador - Modelo
 GlobalBridge
 
-Um modelo para o desenvolvimento do Projeto Integrador do Curso de Técnico em Desenvolvimento de Sistemas para a Internet Integrado ao Ensino Médio do IFC - Campus Araquari.
-
 *(A nossa plataforma tem como objetivo facilitar o processo de intercâmbio internacional, reunindo em um único portal informações essenciais para estudantes interessados em estudar no exterior. O site apresenta requisitos para ingressar no país, aspectos culturais e convivência com a comunidade local, estimativas de custo de vida e indicações de agências especializadas que auxiliam na concretização da experiência internacional. A proposta é oferecer orientação clara, confiável e acessível, promovendo maior segurança e planejamento aos futuros intercambistas.)*
-
-**IMPORTANTE**: [**Cadastre seu projeto nesta planilha**](https://docs.google.com/spreadsheets/d/1bSb1-S9qOf46fNH8quyoFpcjcTuBMj_EdSPchOuFULY/edit?usp=sharing).
 
 Professor: [Marco André Mendes](github.com/marcoandre)
 
@@ -16,7 +12,6 @@ Equipe:
 - [Ijair Machado](https://github.com/youtario)
 
 Links do projeto:
-(*Coloque aqui os links para a documentação do projeto e os repositórios e plubicação do backend e frontend.*)
 -   [Documentação (esse documento)](github.com/marcoandre/pi-modelo)
 -   Backend: [Repositório](github.com/marcoandre/pi-backend) e [Publicação](https://pi-backend.herokuapp.com/)
 -   Frontend: [Repositório](https://github.com/FilipeBento19/globalbridge-frontend) e [Publicação](https://globalbridge-frontend.vercel.app/)
