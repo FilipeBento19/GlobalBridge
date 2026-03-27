@@ -90,219 +90,209 @@ Com essas funcionalidades, o GlobalBridge pretende tornar o processo de planejam
 
 
 # 4. Regras de negócio
-(*Nessa parte a equipe deve descrever as regras de negócio que serão implementadas no sistema. O texto abaixo descreve o que essa etapa deve conter e pode ser apagado depois.*)
+**RN001** – Cadastro de País
 
-As **Regras de negócio** são orientações e restrições que ajudam a regular as operações de uma empresa. **Regras** foram criadas para **colaborar com o funcionamento**, seja da sociedade, de uma escola, de um jogo, etc. Não seria diferente nas organizações. Vamos abordar melhor sobre esse assunto. Entender o que são as regras de negócio, sua importância, como são aplicadas e
-automatizadas na gestão por processo.
+Um país só pode ser cadastrado se possuir informações básicas como nome, custo de vida, idioma e descrição.
 
-**4.1 O que são regras de negócio?**
+**RN002** – Atualização de País
 
-Um negócio funciona por processos que, por sua vez, são formados por atividades relacionadas entre si.
+Apenas usuários com nível de administrador podem editar informações de países.
 
-As funções das áreas de compras, estoque, logística, finanças, vendas e marketing, por exemplo, compõem um processo de fornecimento de um produto ao cliente.
+**RN003** – Cadastro de Programa
 
-Dentro desses processos, existem regras que devem ser seguidas durante a execução das atividades, que ajudam a definir **COMO** as operações devem ser realizadas e gerenciadas, **POR QUEM**, **QUANDO**, **ONDE** e **POR QUÊ**.
+Um programa de intercâmbio deve possuir nome, descrição e requisitos mínimos para ser cadastrado no sistema.
 
-Podemos dizer que as regras de negócio são **limites impostos às operações**, de forma que elas sigam corretamente em direção às políticas e aos objetivos da instituição.
+**RN004** – Associação entre Programa e País
 
-**4.2 Regras para a criação de regras de negócio**
+Um programa só pode ser vinculado a um país se for realmente oferecido nesse destino.
 
-De maneira geral, as regras de negócio devem:
-- Ser **simples**, isto é,  ter apenas uma função.
-- Ser **completas**, com início, meio e fim.
-- Ser possíveis de **mensurar** e **rastrear**.
-- Estar em consonância com a **legislação**.
-- Estar **atualizadas** e sempre **revisadas**.
-- Refletir a **política** e os **valores** da organização.
-- Ser **inteligíveis** para os colaboradores e envolvidos no processo.
+**RN005** – Cadastro de Agência
 
-**4.3 Por que ter regras de negócio?**
+Uma agência só pode ser cadastrada se possuir informações válidas de contato ou site oficial.
 
-- **Padronização de processos:** padronizam os processos e auxiliam a fluirem de forma mais eficiente e automatizada.
-- **Controle de processos:** auxiliam no controle de processos, pois falhas são identificadas e corrigidas mais rapidamente.
-- **Tomada de decisão:** auxiliam na tomada de decisão e no cumprimento de estratégias pré-estabelecidas.
+**RN006** – Associação entre Agência e País
 
-**4.4 Exemplos de regras de negócio**
+Uma agência só pode ser associada a países nos quais realmente atua.
 
-- Em um controle de qualidade de granja, pode-se dizer que a cada 100 ovos impróprios para consumo, o lote será descartado.
-- Em um banco, clientes com faturamento mensal de mais de R$ 25 mil e CPF sem restrições, serão atendidos pelo gerente Premium pessoa física.
-- Para conclusão de licitações, devem ser feitos três orçamentos e o vencedor será sempre o de menor preço final.
-- Em um processo de seleção de RH, o candidato só pode ser aprovado se tiver mais de 5 anos de experiência na área, diploma de pós-graduação, espanhol fluente e pretensão salarial abaixo de R$ 8.000,00.
-- Em um processo de vendas, o vendedor só pode vender um produto se o cliente tiver mais de 18 anos, renda familiar acima de R$ 5.000,00 e não tiver restrições no CPF.
-- Em um processo de compras, o fornecedor só pode ser contratado se tiver nota fiscal, certificado de qualidade e preço abaixo de R$ 10,00 por unidade.
-- Em um processo de logística, o pedido só pode ser enviado se o cliente tiver mais de 18 anos, endereço de entrega no mesmo estado e não tiver restrições no CPF.
+**RN007** – Exibição de Países
 
-**4.5 Como escrever regras de negócio?**
+O sistema deve exibir apenas países que possuam informações completas cadastradas.
 
-- Número identificador.
-- Nome da regra.
-- Data de criação e data da última alteração para comparações e
-controle.
-- Nome dos Autores das versões.
-- Número da versão (1, 2 etc).
-- Dependências: insira o identificador das regras atreladas, às quais a regra em questão depende.
-- Uma descrição detalhada para compreensão da regra.
+**RN008** – Aplicação de Filtros
 
-**4.6 Exemplos de regras de negócio com formatação**
+Os filtros devem considerar apenas dados existentes no sistema.
 
-- **RN01 – Criação Comanda:** Para iniciar um atendimento no balcão, é necessário primeiro abrir uma nova comanda.
-- **RN02 – Inserir Produtos Comanda:** Para inserir um produto na comanda, é necessário que o produto esteja cadastrado no sistema e que a quantia comprada seja acima de zero.
-- **RN03 – Cadastro de Leitores:** Os leitores precisam fazer o cadastro para realizar o empréstimo.
-- **RN04 – Realizar Empréstimo:** Para realizar o empréstimo, apenas leitores com cadastro e nenhuma multa em aberto.
-- **RN05 – Registro de Empréstimo:** O gerente deve possuir acesso aos registros de empréstimos.
-- **RN06 – Pagamento de Multa:** O leitor que passar de 15 dias com o livro deverá pagar a multa de um real por dia de atraso.
-- **RN07 – Impressão de Orçamento:** Com as informações do
-orçamento registradas, a atendente deve imprimir o orçamento e
-repassar ao cliente para aprovação, e caso o cliente aprovar, a atendente deve solicitar a sua assinatura para aprovar a execução do serviço.
-- **RN08 – Abertura de OS:** Com o atendimento aprovado pelo cliente, a atendente deverá inserir os dados do cliente e do orçamento em um novo documento, para registros internos, realizando a abertura da OS.
-- **RN09 – Relatório de Fluxo de Caixa:** O relatório de fluxo de caixa será permitido somente para o administrador.
+**RN009** – Acesso Administrativo
+
+Somente usuários autenticados como administradores podem realizar alterações no sistema.
+
+**RN010** – Integridade dos Dados
+
+Não é permitido excluir um país que esteja vinculado a programas ou agências sem remover os vínculos previamente.
+
 
 # 5. Requisitos funcionais
-(*Nessa parte a equipe deve descrever os requisitos funcionais que serão implementados no sistema. O texto abaixo descreve o que essa etapa deve conter e pode ser apagado depois.*)
 
-**5.1 O que são requisitos funcionais?**
+### **Níveis de acesso:**
 
-Um requisito funcional é uma declaração de como um sistema deve se comportar. Define o que o sistema deve fazer para atender às necessidades ou expectativas do usuário. Os requisitos funcionais podem ser pensados ​como recursos que o usuário detecta.
+* **Visitante** – Usuário que acessa o sistema sem estar autenticado.
+* **Usuário** – Usuário autenticado que navega pela plataforma e pode avaliar agências.
+* **Empresa** – Usuário autenticado responsável por uma agência.
+* **Administrador** – Usuário com controle total do sistema.
 
-Os requisitos funcionais são compostos de duas partes:
-**função** e **comportamento**.
 
-- A **função** é o que o sistema **faz**. Por exemplo: *“calcular imposto sobre vendas”*.
-- O **comportamento** é **como** o sistema faz. Por exemplo: *“O sistema deve calcular o imposto sobre vendas multiplicando o preço de compra pela alíquota do imposto.”*.
+### **Entradas:**
 
-**5.2 Tipos de requisitos funcionais**
+### **RF001 - Cadastro de Usuário**
 
-Os requisitos funcionais podem ser classificados em:
+O sistema deve permitir que o visitante crie uma conta para acessar funcionalidades como avaliações.
 
-- Regulamentos de Negócios
-- Requisitos de Certificação
-- Requisitos de relatório
-- Funções Administrativas
-- Níveis de autorização
-- Rastreamento de auditoria
-- Interfaces Externas
-- Gestão de dados
-- Requisitos Legais e Regulamentares
+**Dados de entrada:** nome, email, senha
+**Usuários:** visitante
 
-**5.3 Diretrizes para a elaboração de requisitos funcionais**
 
-Cada requisito funcional precisa ser:
 
-- **Específico** sobre o que o sistema deve fazer.
-- **Mensurável** para que você possa dizer se o sistema está fazendo isso
-- **Alcançável** dentro do prazo que você definiu
-- **Relevante** para seus objetivos de negócios
-- **Limitado** no tempo para que você possa
-acompanhar o progresso
 
-**5.4 Estrutura do requisito funcional**
+### **RF002 - Autenticação de Usuário**
 
-Um requisito funcional deve ser estruturado da seguinte forma:
+O sistema deve permitir que usuários realizem login para acessar suas funcionalidades.
 
-- **Nome do requisito funcional:** descrição do
-requisito.
-  - **Dados necessários:** dado 1, dado 2, dado 3.
-  - **Usuários:** todos os níveis de usuário.
+**Dados de entrada:** email, senha
+**Usuários:** visitante
 
-**5.4.1 Nome do requisito funcional**
 
-**R.F. 99 - Nome do requisito funcional:** é o nome da função que o software terá. Sugerimos, por padronização, que tenha o prefixo R.F. (requisito funcional)
-seguida da numeração, para melhor identificação do requisito, acrescido do formato *“Substantivo + onde será feita a ação”*.
-Por exemplo:
-- R.F. 01 - Registro de Funcionários
-- R.F. 15 - Gerenciamento de consultas
-- R.F. 04 - Débito em conta corrente
 
-Deixe para definir as numerações ao final, tendo em vista que mudanças podem acontecer e não é prático sempre ficar reajustando os números.
 
-**5.4.2 Descrição do requisito funcional**
+### **RF003 - Cadastro de Agência**
 
-**Descrição do requisito:** local para descrever a função deste requisito.
+O sistema deve permitir que usuários do tipo empresa cadastrem sua agência na plataforma.
 
-Sempre se preocupe em esclarecer dois pontos: o que o requisito faz e o motivo de sua existência. Isso é especialmente importante se a ação executada nesse requisito não for algo que já acontece naturalmente na empresa.
-Um exemplo é um Registro de funcionários, que talvez não exista hoje mas para o software é necessário para viabilizar uma autenticação de
-usuários. Outro exemplo é algo que faz sentido apenas para um  software, como a própria autenticação.
+**Dados de entrada:** nome, descrição, contato, telefone, site, endereço
+**Usuários:** empresa
 
-**5.4.3 Dados necessários**
 
-**Dados necessários:** aqui devem ser colocados os nomes dos dados que serão usados para que esse requisito atenda o que precisa fazer.
+### **RF004 - Cadastro de País**
 
-Nas **entradas** e **processos**, em geral, são os dados que serão salvos (seja algo digitado pelo usuário ou captado do sistema, como a hora atual).
+O sistema deve permitir que o administrador cadastre países com suas informações.
 
-Já nas **saídas**, são os dados que serão exibidos em tela (sejam eles vindos diretamente do banco, ou criados por um cálculo ou busca na sessão do usuário).
+**Dados de entrada:** nome, código_iso, custo_de_vida, cultura, idioma, oportunidades, descrição
+**Usuários:** administrador
 
-**5.4.4 Usuários**
 
-**Usuários:** aqui devem ser colocados os nomes dos usuários que terão acesso a esse requisito, conforme enumerados na descrição do sistema.
+### **RF005 - Cadastro de Programa**
 
-**5.4.5 Exemplo de requisito funcional**
+O sistema deve permitir cadastrar programas de intercâmbio.
 
-- **R.F. 01 - Autenticação de usuário:** tem como propósito autenticar o acesso ao sistema, verificando se o usuário pode acessá-lo e, caso possa, o direcionando
-para a página principal de seu perfil de acesso.
-  - **Dados necessários:** login, senha, nível de permissão.
-  - **Usuários:** todos os níveis de usuário.
+**Dados de entrada:** nome, descrição, requisitos, duração mínima, duração máxima
+**Usuários:** administrador
 
-**5.4.6 Organização dos requisitos funcionais**
 
-As funcionalidades devem ser organizadas em: entradas, processos e saídas.
+### **RF006 - Avaliação de Agência**
 
-**Entradas:** São as funcionalidades que alimentarão o software com as informações essenciais para seu uso.
+O sistema deve permitir que usuários avaliem agências com nota e comentário.
 
-**Exemplos de entradas:**
-- “**Registro de usuário**” (para permitir depois seu acesso ao software).
-- “**Registro de paciente**” (que seria útil caso nosso software fosse ppara uma clínica, evitando registrar várias vezes os mesmos dados da pessoa a cada consulta e viabilizando um histórico de seus
-atendimentos).
+**Dados de entrada:** nota, comentário
+**Usuários:** usuário
 
-**Processos:** Em geral, englobam toda ação que executa cálculos, processamentos de tomada de decisão ou transforma dados em novos dados.
 
-**Exemplos de processos:**
-- “**Autenticação de usuário**”, que usará os dados de “**Registro de usuário**” em sua execução.
-- “**Agendamento de consulta**”, que usará dados do “**Registro de paciente**” e talvez do “**Registro de funcionário**” em sua execução.
+### **RF007 - Edição de Agência**
 
-**Saídas:** São os relatórios, gráficos, impressões, etc., que utilizarem os dados do software para gerar informações pertinentes ao
-negócio, mas sem intenção de alterá-los, apenas permitindo sua visualização e filtragem.
+O sistema deve permitir que empresas editem os dados da sua própria agência.
 
-**Exemplos de saídas:**
-- “Relatório de consultas por paciente”.
-- Relatório de vendas”.
-- “Log de usuários autenticados”.
+**Dados de entrada:** nome, descrição, contato, telefone, site, endereço
+**Usuários:** empresa
 
-Todos esses podem ser consideradas saídas, pois usam informações de entradas e processos de modo a mostrar informações relevantes ao
-negócio. Lembre-se que, diferentemente das entradas e processos, aqui os dados necessários devem ser os que a tela exibirá.
 
-**5.4.7 Exemplo de organização dos requisitos funcionais**
 
-(_A seguir, um exemplo de organização de requisitos funcionais, com entradas, processos e saídas._)
 
-**Entradas:**
+### **Processos:**
 
-- **R.F. 01 - Nome do requisito funcional:** descrição do requisito.
-  - **Dados necessários:** dado 1, dado 2, dado 3.
-  - **Usuários:** todos os níveis de usuário.
+### **RF008 - Filtragem de Países**
 
-- **R.F. 02 - Nome do requisito funcional:** descrição do requisito.
-  - **Dados necessários:** dado 1, dado 2, dado 3.
-  - **Usuários:** todos os níveis de usuário.
+O sistema deve permitir filtrar países com base em critérios como cultura, idioma e oportunidades.
 
-**Processamento:**
+**Dados de entrada:** filtros selecionados
+**Usuários:** visitante, usuário
 
-- **R.F. 03 - Nome do requisito funcional:** descrição do requisito.
-  - **Dados necessários:** dado 1, dado 2, dado 3.
-  - **Usuários:** todos os níveis de usuário.
 
-- **R.F. 04 - Nome do requisito funcional:** descrição do requisito.
-  - **Dados necessários:** dado 1, dado 2, dado 3.
-  - **Usuários:** todos os níveis de usuário.
 
-**Saídas:**
 
-- **R.F. 05 - Nome do requisito funcional:** descrição do requisito.
-  - **Dados necessários:** dado 1, dado 2, dado 3.
-  - **Usuários:** todos os níveis de usuário.
+### **RF009 - Associação de Programa ao País**
 
-- **R.F. 06 - Nome do requisito funcional:** descrição do requisito.
-  - **Dados necessários:** dado 1, dado 2, dado 3.
-  - **Usuários:** todos os níveis de usuário.
+O sistema deve permitir vincular programas aos países disponíveis.
+
+**Dados de entrada:** id_pais, id_programa
+**Usuários:** administrador
+
+
+
+
+### **RF010 - Associação de Agência ao País**
+
+O sistema deve permitir vincular agências aos países onde atuam.
+
+**Dados de entrada:** id_agencia, id_pais
+**Usuários:** administrador, empresa
+
+
+
+
+### **RF011 - Gerenciamento de Avaliações**
+
+O sistema deve permitir que usuários editem ou removam suas avaliações.
+
+**Dados de entrada:** id_avaliacao, nota, comentário
+**Usuários:** usuário
+
+
+
+
+### **RF012 - Controle de Acesso**
+
+O sistema deve controlar o acesso às funcionalidades com base no nível do usuário.
+
+**Dados de entrada:** nível_acesso
+**Usuários:** sistema
+
+
+
+
+### **Saídas:**
+
+### **RF013 - Listagem de Países**
+
+O sistema deve exibir os países disponíveis na plataforma.
+
+**Dados de saída:** nome, resumo, imagem
+**Usuários:** visitante, usuário
+
+
+
+### **RF014 - Detalhamento de País**
+
+O sistema deve exibir informações completas de um país.
+
+**Dados de saída:** custo de vida, cultura, idioma, oportunidades, programas
+**Usuários:** visitante, usuário
+
+
+
+### **RF015 - Listagem de Agências por País**
+
+O sistema deve exibir agências disponíveis em um país.
+
+**Dados de saída:** nome, descrição, contato
+**Usuários:** visitante, usuário
+
+
+### **RF016 - Exibição de Avaliações**
+
+O sistema deve mostrar avaliações de uma agência.
+
+**Dados de saída:** nota, comentário, nome do usuário
+**Usuários:** visitante, usuário
+
+
 
 # 6. Requisitos não funcionais
 
