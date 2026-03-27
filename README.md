@@ -86,7 +86,8 @@ Com essas funcionalidades, o GlobalBridge pretende tornar o processo de planejam
 
 **pais_programa**: Tabela intermediária responsável por relacionar os programas de intercâmbio com os países onde estão disponíveis.
 
-![modelagem_de_dados](img/Modelagem_de_Dados.jpg)
+<img src="img/Modelagem_de_Dados.jpg" alt="modelagem" width="800">
+
 
 
 # 4. Regras de negócio
