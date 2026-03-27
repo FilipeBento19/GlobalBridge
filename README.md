@@ -70,10 +70,23 @@ Com essas funcionalidades, o GlobalBridge pretende tornar o processo de planejam
 
 # 4. Modelagem de Dados
 
-(*Nessa parte a equipe deve descrever a modelagem de dados que será implementada no sistema. O texto abaixo descreve o que essa etapa deve conter e pode ser apagado depois.*)
+**Descrição das Tabelas**
 
-Defina as entidades e relacionamentos que farão parte do sistema. Desenhe o diagrama de entidade-relacionamento (DER) e descreva as entidades e relacionamentos que farão parte do sistema.
+**usuario:** Armazena os dados dos usuários do sistema, incluindo administradores, usuários comuns e representantes de agências. Também controla o nível de acesso e status da conta.
 
+**agencia**: Responsável por armazenar as informações das agências de intercâmbio cadastradas na plataforma, como dados de contato e descrição. Cada agência está vinculada a um usuário responsável.
+
+**pais**: Contém os dados dos países disponíveis para intercâmbio, incluindo informações como custo de vida, cultura, idioma e oportunidades, além de uma descrição geral do destino.
+
+**programa**: Armazena os tipos de programas de intercâmbio oferecidos, como Study & Work e Au Pair, incluindo suas descrições, requisitos e duração.
+
+**avaliacao**: Registra as avaliações feitas pelos usuários sobre as agências, incluindo nota e comentário, permitindo feedback sobre os serviços oferecidos.
+
+**pais_agencia**: Tabela intermediária que relaciona as agências com os países onde atuam, permitindo que uma agência esteja presente em vários países e vice-versa.
+
+**pais_programa**: Tabela intermediária responsável por relacionar os programas de intercâmbio com os países onde estão disponíveis.
+
+![modelagem_de_dados](img/Modelagem_de_Dados.jpg)
 
 
 # 4. Regras de negócio
