@@ -13,8 +13,8 @@ Equipe:
 
 Links do projeto:
 -   [Documentação (esse documento)](github.com/marcoandre/pi-modelo)
--   Backend: [Repositório](github.com/marcoandre/pi-backend) e [Publicação](https://pi-backend.herokuapp.com/)
--   Frontend: [Repositório](https://github.com/FilipeBento19/globalbridge-frontend) e [Publicação](https://globalbridge-frontend.vercel.app/)
+-   Backend: [Repositório](github.com/globalbridgeorg/globalbridge-backend) e [Publicação](https://pi-backend.herokuapp.com/)
+-   Frontend: [Repositório](https://github.com/globalbridgeorg/globalbridge-frontend) e [Publicação](https://globalbridge-gamma.vercel.app)
 
 ---
 
