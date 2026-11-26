@@ -1,20 +1,23 @@
-# Projeto Integrador - Modelo
-GlobalBridge
+# GlobalBridge
 
-*(A nossa plataforma tem como objetivo facilitar o processo de intercâmbio internacional, reunindo em um único portal informações essenciais para estudantes interessados em estudar no exterior. O site apresenta requisitos para ingressar no país, aspectos culturais e convivência com a comunidade local, estimativas de custo de vida e indicações de agências especializadas que auxiliam na concretização da experiência internacional. A proposta é oferecer orientação clara, confiável e acessível, promovendo maior segurança e planejamento aos futuros intercambistas.)*
+**Projeto Integrador — Plataforma de Apoio ao Planejamento de Intercâmbios Internacionais**
 
-Professor: [Marco André Mendes](github.com/marcoandre)
+A **GlobalBridge** tem como objetivo facilitar o processo de intercâmbio internacional, reunindo em um único portal informações confiáveis para estudantes interessados em estudar ou trabalhar no exterior. A plataforma reúne dados detalhados de **23 países** (custo de vida, idioma, cultura, universidades, cidades e programas), um **globo 3D interativo**, **26 agências verificadas** com páginas personalizáveis, avaliações de estudantes reais e uma área dedicada **GlobalBridge Business** para agências parceiras.
 
-Equipe:
-- [Athur Candido](https://github.com/ArthurBenk)
-- [Caue Kreutz](https://github.com/CaueKreutz)
+**Professor:** [Marco André Lopes Mendes](https://github.com/marrcandre)
+
+**Equipe:**
+- [Arthur Cândido](https://github.com/ArthurBenk)
+- [Cauê Kreutz](https://github.com/CaueKreutz)
 - [Filipe Bento](https://github.com/FilipeBento19)
 - [Ijair Machado](https://github.com/youtario)
 
-Links do projeto:
--   [Documentação (esse documento)](github.com/marcoandre/pi-modelo)
--   Backend: [Repositório](github.com/globalbridgeorg/globalbridge-backend) e [Publicação](https://pi-backend.herokuapp.com/)
--   Frontend: [Repositório](https://github.com/globalbridgeorg/globalbridge-frontend) e [Publicação](https://globalbridge-gamma.vercel.app)
+**Links do projeto:**
+- **Documentação (este repositório):** [github.com/FilipeBento19/GlobalBridge](https://github.com/FilipeBento19/GlobalBridge)
+- **Frontend:** [Repositório](https://github.com/globalbridgeorg/globalbridge-frontend) · [Aplicação publicada (Vercel)](https://globalbridge-gamma.vercel.app)
+- **Backend (Django + DRF):** [Repositório](https://github.com/globalbridgeorg/globalbridge-backend) · [API publicada (Render)](https://globalbridge-backend-1.onrender.com/api/) · [Documentação Swagger / OpenAPI](https://globalbridge-backend-1.onrender.com/api/doc/) · [Django Admin](https://globalbridge-backend-1.onrender.com/admin/)
+
+> **Nota sobre a hospedagem gratuita:** o backend roda no plano gratuito do Render, que hiberna após ~15 minutos sem acesso. Na primeira requisição após inatividade, o servidor pode levar alguns segundos para acordar.
 
 ---
 
@@ -22,570 +25,292 @@ Links do projeto:
 
 ## 1.1 Modelo de Sistema
 
-### Plataforma de intermediação para intercâmbios
+### Plataforma de intermediação e apoio ao planejamento de intercâmbios
 
-O sistema escolhido para o desenvolvimento do projeto é uma **plataforma digital de apoio ao planejamento de intercâmbios internacionais**, chamada **GlobalBridge**. O objetivo da plataforma é facilitar o acesso de estudantes e interessados em experiências internacionais a informações confiáveis sobre países, programas de intercâmbio e agências especializadas.
+O sistema desenvolvido no projeto é uma **plataforma digital de apoio ao planejamento de intercâmbios internacionais**, chamada **GlobalBridge**. O objetivo da plataforma é facilitar o acesso de estudantes e interessados em experiências internacionais a informações organizadas sobre países, programas de intercâmbio e agências verificadas.
 
-A escolha desse sistema foi feita porque muitas pessoas têm interesse em estudar ou trabalhar no exterior, mas encontram dificuldades para comparar destinos, entender os custos envolvidos e encontrar agências confiáveis para iniciar o processo. Atualmente, grande parte dessas informações está espalhada em diferentes sites ou depende de contato direto com agências, o que pode tornar o processo confuso para quem está começando a planejar o intercâmbio.
+A escolha desse sistema partiu da dificuldade real enfrentada por quem deseja estudar ou trabalhar no exterior: comparar destinos, entender custos de vida, identificar programas compatíveis e encontrar agências confiáveis. Grande parte dessas informações costuma ficar dispersa em dezenas de sites, blogs e redes sociais, tornando o início do planejamento confuso e demorado.
 
-Dessa forma, a plataforma GlobalBridge busca reunir essas informações em um único ambiente digital, permitindo que o usuário explore diferentes países, conheça características culturais, custos de vida, oportunidades de estudo e trabalho, além de ter acesso a agências que podem auxiliar na realização do intercâmbio.
+A GlobalBridge centraliza essa jornada em um único ambiente digital, oferecendo:
+- **Para estudantes e visitantes:** exploração de destinos por região e em um **globo 3D interativo**, filtros por idioma/tags/região, páginas completas de países e agências (com galeria clicável, FAQ, equipe, certificações, planos e avaliações reais), sistema de favoritos e perfil público.
+- **Para agências (GlobalBridge Business):** processo de solicitação e verificação com envio de comprovante, painel de métricas e completude da página, editor visual modular (banner/foto com ponto focal, galeria, blocos opcionais e ordenação de seções), gestão de planos/preços e solicitação de novos países atendidos.
+- **Para administradores:** painel administrativo integrado (`/admin` no frontend + Django Admin nativo) para aprovar ou recusar solicitações de novas agências e países adicionais, além de gerenciar mensagens enviadas pelo formulário de contato.
 
 ---
 
-# 2. Situação Problema
+# 2. Situação-Problema
 
 ## Introdução
 
-O intercâmbio internacional tem se tornado cada vez mais comum entre estudantes e jovens profissionais que buscam novas oportunidades de aprendizado, experiência cultural e desenvolvimento pessoal. Programas como **Study & Work**, **Au Pair** e cursos de idioma no exterior são algumas das opções mais procuradas por quem deseja viver uma experiência internacional.
+O intercâmbio internacional tem se tornado cada vez mais comum entre estudantes e jovens profissionais que buscam novas oportunidades de aprendizado, imersão cultural e crescimento acadêmico ou profissional. Programas como **Study & Work**, **Au Pair**, cursos de idiomas, graduação e pós-graduação no exterior figuram entre as opções mais procuradas.
 
-Entretanto, apesar do grande interesse nesse tipo de experiência, muitas pessoas encontram dificuldades durante o processo inicial de planejamento do intercâmbio. Isso acontece principalmente pela falta de informações centralizadas e pela dificuldade de comparar diferentes destinos e programas disponíveis.
+Entretanto, apesar do grande interesse, muitos estudantes enfrentam barreiras já nas primeiras etapas do planejamento — principalmente pela dispersão de informações e pela dificuldade de comparar destinos e agências de forma transparente.
 
 ## Situação-problema
 
-Atualmente, quem deseja realizar um intercâmbio costuma iniciar sua pesquisa na internet, buscando informações sobre países, custos e tipos de programas disponíveis. No entanto, essas informações geralmente estão distribuídas em diversos sites diferentes, como páginas de agências, blogs, vídeos e redes sociais.
+Atualmente, quem planeja um intercâmbio costuma pesquisar manualmente em diversos sites de agências, vídeos, fóruns e redes sociais para descobrir custo de vida, idioma, cultura local, oportunidades de estudo/trabalho e requisitos básicos de cada país.
 
-Esse processo pode acabar gerando confusão para o usuário, já que nem sempre é fácil identificar quais informações são confiáveis ou atualizadas. Além disso, muitas vezes o usuário precisa visitar vários sites diferentes para entender aspectos importantes do destino escolhido, como custo de vida, idioma, cultura local ou oportunidades de trabalho durante o intercâmbio.
-
-Outro fator que dificulta o planejamento é a escolha da agência responsável pelo intercâmbio. Existem muitas agências no mercado, e para quem está iniciando a pesquisa pode ser difícil identificar quais são mais confiáveis ou qual oferece o programa mais adequado ao perfil do estudante.
-
-Também é comum que o usuário tenha dúvidas sobre qual país escolher, já que diferentes destinos possuem características distintas, como custo de vida, clima, cultura, oportunidades de trabalho e facilidade de obtenção de visto.
+Esse cenário gera insegurança por três motivos principais:
+1. **Informações fragmentadas e desatualizadas**, obrigando o estudante a cruzar múltiplas fontes para comparar países.
+2. **Dificuldade de escolher agências confiáveis**, já que nem sempre há avaliações transparentes de outros estudantes ou comparação clara entre os programas oferecidos.
+3. **Falta de filtros práticos**, dificultando relacionar o perfil e os objetivos do estudante aos destinos e programas mais compatíveis.
 
 ## Conclusão
 
-Diante dessa situação, percebe-se a necessidade de uma plataforma que reúna informações importantes sobre intercâmbios de forma organizada e acessível. Um sistema como o **GlobalBridge** pode ajudar os usuários a explorar diferentes destinos, comparar características dos países e encontrar agências que ofereçam programas compatíveis com seus objetivos.
-
-Com uma ferramenta centralizada e interativa, o processo de planejamento do intercâmbio se torna mais simples, permitindo que o usuário tome decisões mais informadas e seguras antes de iniciar sua experiência internacional.
+Diante desse cenário, fica clara a necessidade de uma plataforma centralizada, confiável e interativa que conecte estudantes a informações estruturadas de destinos e a agências verificadas. A **GlobalBridge** simplifica essa jornada, apoiando decisões mais informadas e seguras antes do embarque.
 
 ---
 
-# 3. Descrição da proposta
+# 3. Descrição da Proposta
 
-A proposta do projeto é desenvolver a plataforma **GlobalBridge**, um sistema online que reúne informações relevantes sobre intercâmbios internacionais e conecta usuários interessados a agências especializadas nesse tipo de programa.
+A proposta do projeto é a **GlobalBridge**, uma aplicação web responsiva (com suporte a **PWA instalável**) dividida em frontend Vue 3 e backend API REST em Django + Django REST Framework, conectada a PostgreSQL e armazenamento de mídia em nuvem.
 
-O foco principal do software será **facilitar a busca e comparação de destinos de intercâmbio**, apresentando informações como custo de vida, cultura local, idioma predominante, oportunidades de estudo e trabalho e outras características importantes para quem deseja morar temporariamente em outro país.
+Entre os recursos entregues pela plataforma estão:
+- **Catálogo de destinos:** 23 países organizados por região (América do Norte, América Latina, Europa, Ásia, Oceania e África), com custo de vida, idioma, cultura, universidades, cidades principais, tags e programas disponíveis.
+- **Exploração interativa (`/mapview`):** globo 3D interativo com busca e filtros cruzados por região, tags, países e agências parceiras.
+- **Páginas de agências personalizáveis (`/agencias/:id`):** cada agência possui identidade visual própria (hero em banner com ponto focal ou foto quadrada), galeria de fotos com visualização em tela cheia (lightbox), seção *"Como funciona"*, catálogo de planos/preços, equipe com fotos, certificações, perguntas frequentes (FAQ), vídeo, mapa, redes sociais, WhatsApp e avaliações de estudantes.
+- **Avaliações reais e perfis públicos (`/usuarios/:username`):** estudantes autenticados avaliam agências (nota de 1 a 5 e comentário), podendo editar ou remover suas avaliações; os melhores depoimentos alimentam a seção *"Quem já foi"* na página inicial.
+- **Área GlobalBridge Business (`/business` e `/business/editor`):** agências passam por verificação prévia (`/business/solicitar`), acompanham o status em `/business/analise` e, após aprovação, gerenciam métricas, ranking no país, completude da página, planos, galeria, países atendidos e layout modular.
+- **Moderação administrativa (`/admin` e Django Admin):** análise de comprovantes com URLs assinadas temporárias, aprovação/recusa de novas agências e países adicionais com notificação por e-mail e leitura de mensagens do formulário `/contato`.
 
-Entre as principais funcionalidades do sistema estarão a exploração interativa de países, filtros de pesquisa por aspectos como cultura, idioma, ensino e oportunidades de trabalho, além da apresentação de programas de intercâmbio como **Study & Work**, **Au Pair** e outros formatos disponíveis.
-
-Com essas funcionalidades, o GlobalBridge pretende tornar o processo de planejamento de um intercâmbio mais claro, organizado e acessível para qualquer pessoa interessada em viver uma experiência internacional.
+---
 
 # 4. Modelagem de Dados
 
-**Descrição das Tabelas**
-
-**usuario:** Armazena os dados dos usuários do sistema, incluindo administradores, usuários comuns e representantes de agências. Também controla o nível de acesso e status da conta.
-
-**agencia**: Responsável por armazenar as informações das agências de intercâmbio cadastradas na plataforma, como dados de contato e descrição. Cada agência está vinculada a um usuário responsável.
-
-**pais**: Contém os dados dos países disponíveis para intercâmbio, incluindo informações como custo de vida, cultura, idioma e oportunidades, além de uma descrição geral do destino.
-
-**programa**: Armazena os tipos de programas de intercâmbio oferecidos, como Study & Work e Au Pair, incluindo suas descrições, requisitos e duração.
-
-**avaliacao**: Registra as avaliações feitas pelos usuários sobre as agências, incluindo nota e comentário, permitindo feedback sobre os serviços oferecidos.
-
-**pais_agencia**: Tabela intermediária que relaciona as agências com os países onde atuam, permitindo que uma agência esteja presente em vários países e vice-versa.
-
-**pais_programa**: Tabela intermediária responsável por relacionar os programas de intercâmbio com os países onde estão disponíveis.
-
-<img src="./img/Modelagem_de_Dados.jpg" alt="modelagem" width="800">
-
-
-# 4. Regras de negócio
-**RN001** – Cadastro de País
-
-Um país só pode ser cadastrado se possuir informações básicas como nome, custo de vida, idioma e descrição.
-
-**RN002** – Atualização de País
-
-Apenas usuários com nível de administrador podem editar informações de países.
-
-**RN003** – Cadastro de Programa
-
-Um programa de intercâmbio deve possuir nome, descrição e requisitos mínimos para ser cadastrado no sistema.
-
-**RN004** – Associação entre Programa e País
-
-Um programa só pode ser vinculado a um país se for realmente oferecido nesse destino.
-
-**RN005** – Cadastro de Agência
-
-Uma agência só pode ser cadastrada se possuir informações válidas de contato ou site oficial.
-
-**RN006** – Associação entre Agência e País
-
-Uma agência só pode ser associada a países nos quais realmente atua.
-
-**RN007** – Exibição de Países
-
-O sistema deve exibir apenas países que possuam informações completas cadastradas.
-
-**RN008** – Aplicação de Filtros
-
-Os filtros devem considerar apenas dados existentes no sistema.
-
-**RN009** – Acesso Administrativo
-
-Somente usuários autenticados como administradores podem realizar alterações no sistema.
-
-**RN010** – Integridade dos Dados
-
-Não é permitido excluir um país que esteja vinculado a programas ou agências sem remover os vínculos previamente.
-
-
-# 5. Requisitos funcionais
-
-### **Níveis de acesso:**
-
-* **Visitante** – Usuário que acessa o sistema sem estar autenticado.
-* **Usuário** – Usuário autenticado que navega pela plataforma e pode avaliar agências.
-* **Empresa** – Usuário autenticado responsável por uma agência.
-* **Administrador** – Usuário com controle total do sistema.
-
-
-### **Entradas:**
-
-### **RF001 - Cadastro de Usuário**
-
-O sistema deve permitir que o visitante crie uma conta para acessar funcionalidades como avaliações.
-
-**Dados de entrada:** nome, email, senha
-**Usuários:** visitante
-
-
-
-
-### **RF002 - Autenticação de Usuário**
-
-O sistema deve permitir que usuários realizem login para acessar suas funcionalidades.
-
-**Dados de entrada:** email, senha
-**Usuários:** visitante
-
-
-
-
-### **RF003 - Cadastro de Agência**
-
-O sistema deve permitir que usuários do tipo empresa cadastrem sua agência na plataforma.
-
-**Dados de entrada:** nome, descrição, contato, telefone, site, endereço
-**Usuários:** empresa
-
-
-### **RF004 - Cadastro de País**
-
-O sistema deve permitir que o administrador cadastre países com suas informações.
-
-**Dados de entrada:** nome, código_iso, custo_de_vida, cultura, idioma, oportunidades, descrição
-**Usuários:** administrador
-
-
-### **RF005 - Cadastro de Programa**
-
-O sistema deve permitir cadastrar programas de intercâmbio.
-
-**Dados de entrada:** nome, descrição, requisitos, duração mínima, duração máxima
-**Usuários:** administrador
-
-
-### **RF006 - Avaliação de Agência**
-
-O sistema deve permitir que usuários avaliem agências com nota e comentário.
-
-**Dados de entrada:** nota, comentário
-**Usuários:** usuário
-
-
-### **RF007 - Edição de Agência**
-
-O sistema deve permitir que empresas editem os dados da sua própria agência.
-
-**Dados de entrada:** nome, descrição, contato, telefone, site, endereço
-**Usuários:** empresa
-
-
-
-
-### **Processos:**
-
-### **RF008 - Filtragem de Países**
-
-O sistema deve permitir filtrar países com base em critérios como cultura, idioma e oportunidades.
-
-**Dados de entrada:** filtros selecionados
-**Usuários:** visitante, usuário
-
-
-
-
-### **RF009 - Associação de Programa ao País**
-
-O sistema deve permitir vincular programas aos países disponíveis.
-
-**Dados de entrada:** id_pais, id_programa
-**Usuários:** administrador
-
-
-
-
-### **RF010 - Associação de Agência ao País**
-
-O sistema deve permitir vincular agências aos países onde atuam.
-
-**Dados de entrada:** id_agencia, id_pais
-**Usuários:** administrador, empresa
-
-
-
-
-### **RF011 - Gerenciamento de Avaliações**
-
-O sistema deve permitir que usuários editem ou removam suas avaliações.
-
-**Dados de entrada:** id_avaliacao, nota, comentário
-**Usuários:** usuário
-
-
-
-
-### **RF012 - Controle de Acesso**
-
-O sistema deve controlar o acesso às funcionalidades com base no nível do usuário.
-
-**Dados de entrada:** nível_acesso
-**Usuários:** sistema
-
-
-
-
-### **Saídas:**
-
-### **RF013 - Listagem de Países**
-
-O sistema deve exibir os países disponíveis na plataforma.
-
-**Dados de saída:** nome, resumo, imagem
-**Usuários:** visitante, usuário
-
-
-
-### **RF014 - Detalhamento de País**
-
-O sistema deve exibir informações completas de um país.
-
-**Dados de saída:** custo de vida, cultura, idioma, oportunidades, programas
-**Usuários:** visitante, usuário
-
-
-
-### **RF015 - Listagem de Agências por País**
-
-O sistema deve exibir agências disponíveis em um país.
-
-**Dados de saída:** nome, descrição, contato
-**Usuários:** visitante, usuário
-
-
-### **RF016 - Exibição de Avaliações**
-
-O sistema deve mostrar avaliações de uma agência.
-
-**Dados de saída:** nota, comentário, nome do usuário
-**Usuários:** visitante, usuário
-
-
-
-# 6. Requisitos não funcionais
-
-Requisitos não funcionais (**RNFs**) são as restrições impostas a um sistema que definem seus atributos de qualidade.
-
-Eles geralmente são indicados por adjetivos como **segurança**, **desempenho** e **escalabilidade**.
-
-**6.1 Categorias de requisitos não funcionais**
-
-Os requisitos não funcionais são importantes porque ajudam a garantir que o sistema atenda às necessidades do usuário.
-
-Os Requisitos Não Funcionais explicam as limitações e restrições do sistema a ser projetado. **Esses requisitos não têm nenhum
-impacto na funcionalidade do aplicativo.** Além disso, existe uma prática comum de subclassificar os requisitos não funcionais em várias categorias:
-
-- Interface de Usuário
-- Confiabilidade
-- Segurança
-- Atuação
-- Manutenção
-
-Os requisitos não funcionais podem ser divididos em duas categorias:
-
-1. **Atributos de qualidade:** Estas são as características do sistema que determinam sua qualidade geral. Exemplos de atributos de qualidade incluem segurança, desempenho e usabilidade.
-2. **Restrições:** Estas são as limitações impostas ao sistema.
-Exemplos de restrições incluem tempo, recursos e ambiente.
-
-**6.2 Vantagens dos requisitos não funcionais**
-
-Os requisitos não funcionais ajudam a garantir que o sistema seja:
-
-1. Adaptado às necessidades do usuário.
-2. Adequado à finalidade.
-3. Escalável, seguro e confiável.
-4. Fácil de usar e manter.
-
-**6.3 Exemplos de requisitos não funcionais**
-
-Aqui estão alguns exemplos de requisitos não funcionais:
-1. **Segurança**: O sistema deve ser protegido contra acesso não
-autorizado.
-2. **Atuação**: O sistema deve ser capaz de lidar com o número necessário
-de usuários sem qualquer degradação no desempenho.
-3. **Escalabilidade**: O sistema deve ser capaz de aumentar ou diminuir
-conforme necessário.
-4. **Disponibilidade**: O sistema deve estar disponível quando necessário.
-5. **Manutenção**: O sistema deve ser fácil de manter e atualizar.
-6. **Portabilidade**: O sistema deve ser capaz de rodar em diferentes
-plataformas com alterações mínimas.
-7. **Confiabilidade**: O sistema deve ser confiável e atender aos requisitos
-do usuário.
-8. **Usabilidade**: O sistema deve ser fácil de usar e entender.
-9. **Compatibilidade**: O sistema deve ser compatível com outros sistemas.
-10. **Conformidade**: O sistema deve cumprir todas as leis e regulamentos
-aplicáveis.
-
-**6.4 Exemplo de organização dos requisitos não funcionais**
-
-(_A seguir, um exemplo de organização de requisitos não funcionais._)
-
-**Requisitos não funcionais:**
-
-- **R.N.F. 01 - Nome do requisito não funcional:** descrição do requisito.
-- **R.N.F. 02 - Nome do requisito não funcional:** descrição do requisito.
-
-**Exemplos de requisitos não funcionais:**
-
-
-**Sistema de Padaria**:
-- **R.N.F. 01 - Navegador homologado:** O sistema deverá ser homologado para os navegadores Google Chrome e Mozilla Firefox.
-- **R.N.F. 02 - Processador:** É recomendado para o sistema  no mínimo um processador Intel i3, similar ou superior a geração 7100 ou AMD Ryzen 3 da geração similar ou superior ao 3100, para que o servidor funcione em sua melhor performance.
-- **R.N.F. 03 - Memória RAM:** é recomendável que o sistema possua no mínimo 2GB de RAM para melhor performance.
-- **R.N.F. 04 - Arquitetura:** Será utilizada a arquitetiura MVC para o desenvolvimento do sistema, com uso de uma API REST para comunicação com o banco de dados.
-- **R.N.F. 05 - Banco de dados:** O sistema será implementado com o banco de dados MySQL.
-- **R.N.F. 06 - Conexão com banco de dados:** Para conexão com o banco de dados, o sistema utilizará a ferramenta de MySQL Connector.
-- **R.N.F. 07 - Implementação:** O sistema deverá ser desenvolvido com linguagem Python, Javascript, HTML5, CSS3 e SQL.
-- **R.N.F. 08 - Segurança:** Ficará a critério do responsável do estabelecimento a segurança dos acessos ao sistema, tendo consciência das pessoas que possua permissão para acesso.
-- **R.N.F. 09 - Ambiente de Desenvolvimento Integrado (IDE):** Para criação do sistema, será utilizado o editor de texto Visual Studio Code.
-- **R.N.F. 10 - Disponibilidade:** O sistema irá atender 99% do tempo de uso, somente ocorreria problemas de cadastro, remoção, inserção ou alteração em casos de falta de rede ou energia.
-- **R.N.F. 11 - Legais:** O sistema deve atender às exigências da LGPD (Leis Gerais da Proteção de Dados).
-
-**Sistema de Ordem de Serviço:**
-- **R.N.F. 01 - Navegadores homologados:** o sistema deverá ser homologado para os navegadores Google Chrome e Mozilla Firefox.
-- **R.N.F. 02 - Tecnologia Front-end:** Para a exibição em front-end, o software utilizará o CSS3 e o HTML5, além do framework Vue.js.
-- **R.N.F. 03- Tecnologia Back-end:** O software será desenvolvido pela linguagem de programação Python, com o framework Django e a API REST com Django REST Framework.
-- **R.N.F. 04 - Interoperabilidade:** O banco de dados será o MySQL, com a linguagem SQL de banco, sendo todo produzido através do MySQL Workbench .
-- **R.N.F. 05 - Forma de uso do software:** O sistema por fazer parte de um ambiente interno, provavelmente será utilizado de acordo com as horas de trabalho da empresa, mas estará ativo 24 horas por dia em 7 dias por semana.
-- **R.N.F. 06 - Desempenho:** Para a utilização correta e com uma qualidade e eficiência melhor, é recomendado que se use o SO mais atualizado, com recursos de hardware equivalentes a um processador intel i3 5°Gen ou semelhante, e 8GB de memória RAM, assim como os navegadores homologados.
-- **R.N.F. 07- Autenticação:** Para realizar o acesso ao sistema é necessário ter um usuário de autenticação criado pelo administrador, além da possibilidade de solicitar um envio de redefinição de senha.
-- **R.N.F. 08 - Web Server:** O servidor web utilizado será o Apache Tomcat, nas versões mais atualizadas.
-- **R.N.F. 09 - Níveis de segurança:** O software terá diferentes tipos de acesso para cada tipo de login, tendo as permissões ideais a função de cada um.
-
-**6.6 Conclusão**
-
-Requisitos não funcionais são essenciais para qualquer sistema. Eles ajudam a garantir que o sistema atenda às necessidades do usuário e seja capaz de funcionar como pretendido.
-
-É importante considerar cuidadosamente todos os requisitos não funcionais antes de projetar e desenvolver um sistema.
-Eles ajudam a garantir que o sistema atenda às necessidades do usuário e seja capaz de funcionar como pretendido.
-
-# 7. Diagrama de Caso de Uso
-
-**7.1 Introdução**
-
-O diagrama de caso de uso é uma ferramenta de modelagem que descreve o comportamento de um sistema a partir da perspectiva do usuário. Ele é usado para capturar os requisitos funcionais de um sistema.
-
-- Especificam a visão externa do sistema.
-- Descrevem como o sistema é percebido por seus usuários.
-- Descrevem as interações entre os usuários e o sistema.
-
-![Diagrama de Caso de Uso](img/dcu1.png "Diagrama de Caso de Uso")
-
-**Os casos de uso:**
-- Descrevem como os **usuários interagem com o sistema** (as funcionalidades do sistema)
-- Facilitam a **organização dos requisitos** de um sistema.
-- Dão uma **visão externa** do sistema
-- O conjunto de casos de uso deve ser capaz de comunicar a **funcionalidade** e o **comportamento** do sistema para o cliente.
-- Descrevem **o que** o sistema faz, mas **não** especificam **como** isso deve ser feito.
-
-**7.2 Elementos do diagrama de caso de uso**
-
-7.2.1 **Atores**
-
-- Representam os papéis desempenhados por **elementos externos** ao sistema
-  - Ex: humano (usuário), dispositivo de hardware ou outro sistema (cliente)
-- Elementos que **interagem** com o sistema
-
-Notação:
-
-![Atores Notação](img/dcu_atores_notacao.png "Atores Notação")
-
-**Exemplo: Loja de CDs**
-
-**Identificando os atores**
-- Uma loja de CDs possui discos para venda. Um cliente pode comprar uma quantidade ilimitada de discos para isto ele deve se dirigir à loja.
-- A loja possui um **atendente** cuja função é atender os clientes durante a venda dos discos. A loja também possui um **gerente** cuja função é administrar o estoque para que não faltem discos. Além disso é ele quem dá folga ao atendente, ou seja, ele também atende os clientes durante a venda dos discos.
-
-![Identificando os atores](img/dcu_identificando_atores.png "Identificando os atores")
-
-**E o cliente?**
-- Não é ator pois ele **não interage** com o sistema!
-
-**7.2.2 Casos de uso**
-
-- Representam **funcionalidades** do sistema (requisitos funcionais).
-- São iniciados por **atores** ou por outros casos de uso.
-
-> **Dica**: nomeie os casos de uso com **verbos** no **infinitivo**.
-
-Notação:
-
-![Casos de uso Notação](img/dcu_casos_de_uso_notacao.png "Casos de uso Notação")
-
-**Exemplo: Loja de CDs**
-
-**Identificando os casos de uso**
-
-- Uma loja de CDs possui discos para venda. Um cliente pode comprar uma quantidade ilimitada de discos para isto ele deve se dirigir à loja. A loja possui um atendente cuja função é atender os clientes durante a **venda dos discos**.
-- A loja também possui um gerente cuja função é **administrar o estoque** para que não faltem discos. Além disso é ele quem dá folga ao atendente, ou seja, ele também atende os clientes durante a **venda dos discos**.
-
-![Identificando os casos de uso](img/dcu_identificando_casos_de_uso.png "Identificando os casos de uso")
-
-**7.2.3 Relacionamentos**
-
-**7.2.3.1 Relacionamento de associação**
-
-- Indica que um ator **participa** de um caso de uso, ou seja, o ator **interage** (comunica-se) com o caso de uso.
-- É representado por uma **linha sólida**.
-- Um ator pode se relacionar com **um ou mais casos de uso**.
-
-> Dicas:
-> - Não use setas nas linhas de associação.
-> - Associações não representam fluxo de informação.
-
-![Relacionamento de associação](img/dcu_relacionamento_de_associacao.png "Relacionamento de associação")
-
-**Exemplo: Loja de CDs**
-
-**Identificando os relacionamentos de associação**
-
-- Uma loja de CDs possui discos para venda. Um cliente pode comprar uma quantidade ilimitada de discos para isto ele deve se dirigir à loja. A loja possui um _atendente_ cuja função é atender os clientes durante a **venda dos discos**.
-- A loja também possui um _gerente_ cuja função é **administrar o estoque** para que não faltem discos. Além disso é ele quem dá folga ao _atendente_, ou seja, ele também atende os clientes durante a **venda dos discos**.
-
-![Identificando os relacionamentos de associação](img/dcu_identificando_relacionamentos_de_associacao.png "Identificando os relacionamentos de associação")
-
-**7.2.3.2 Relacionamento de generalização/especialização**
-
-**Generalização de atores**
-
-- Quando dois ou mais atores podem se **comunicar com o mesmo conjunto de casos de uso**.
-- Indica que um ator **herda** as características de outro ator.
-– Um filho (herdeiro) pode se comunicar com todos os casos de uso que seu pai se comunica.
-
-> **Dica:** coloque os herdeiros **embaixo**.
-
-**Notação:**
-
-![Relacionamento de generalização/especialização de atores - notação](img/dcu_relacionamento_de_generalizacao_especializacao_notacao_de_atores.png "Relacionamento de generalização/especialização de atores - notação")
-
-**Exemplo: Loja de CDs**
-
-**Identificando os relacionamentos de generalização/especialização de atores**
-
-![Identificando os relacionamentos de generalização/especialização de atores](img/dcu_identificando_relacionamentos_de_generalizacao_especializacao_de_atores.png "Identificando os relacionamentos de generalização/especialização de atores")
-
-**Generalização de casos de uso**
-
-– O caso de uso filho herda o comportamento e o significado do caso de uso pai.
-– O caso de uso filho pode incluir ou sobrescrever o comportamento do caso de uso pai.
-– O caso de uso filho pode substituir o caso de uso pai em qualquer lugar que ele apareça.
-
-> **Dica:** deve ser aplicada quando uma condição resulta na definição de
-diversos fluxos alternativos.
-
-Notação:
-
-![Relacionamento de generalização/especialização de casos de uso - notação](img/dcu_relacionamento_de_generalizacao_especializacao_notacao_de_casos_de_uso.png "Relacionamento de generalização/especialização de casos de uso - notação")
-
-**Exemplo: Loja de CDs**
-
-**Identificando os relacionamentos de generalização/especialização de casos de uso**
-
-**Novos requisitos:**
-
-- As vendas podem ser **à vista** ou **a prazo**. Em ambos os casos o estoque é
-atualizado e uma nota fiscal, entregue ao consumidor.
-- No caso de uma **venda à vista**, clientes cadastrados na loja e que compram mais de 5 CDs de uma só vez ganham um desconto de 1% para cada ano de cadastro.
-- No caso de uma **venda a prazo**, ela pode ser parcelada em 2 pagamentos com um
-acréscimo de 20%. As vendas a prazo podem ser pagas no **cartão** ou no **boleto**.
-  - Para pagamento com **boleto**, são gerados boletos bancários que são entregues ao cliente e armazenados no sistema para lançamento posterior no caixa.
-  - Para pagamento com **cartão**, os clientes com mais de 10 anos de cadastro na loja ganham o mesmo desconto das compras à vista.
-
-![Identificando os relacionamentos de generalização/especialização de casos de uso](img/dcu_identificando_relacionamentos_de_generalizacao_especializacao_de_casos_de_uso.png "Identificando os relacionamentos de generalização/especialização de casos de uso")
-
-**Identificando mais relacionamentos de generalização/especialização de casos de uso**
-
-![Identificando mais relacionamentos de generalização/especialização de casos de uso](img/dcu_identificando_mais_relacionamentos_de_generalizacao_especializacao_de_casos_de_uso.png "Identificando mais relacionamentos de generalização/especialização de casos de uso")
-
-**7.2.3.3 Relacionamento de dependência**
-
-**Extensão**
-
-- Representa uma variação/extensão do comportamento do caso de uso base.
-- O caso de uso estendido só é executado sob certas circunstâncias.
-- Separa partes obrigatórias de partes opcionais.
-  - Partes obrigatórias: caso de uso base.
-  - Partes opcionais: caso de uso estendido.
-- Fatorar comportamentos variantes do sistema (podendo reusar este comportamento
-em outros casos de uso).
-
-**Notação:**
-
-![Relacionamento de dependência (extensão) - notação](img/dcu_relacionamento_de_dependencia_extensao_notacao.png "Relacionamento de dependência (extensão) - notação")
-
-**Exemplo: Loja de CDs**
-
-**Identificando os relacionamentos de dependência (extensão)**
-
-**Novos requisitos:**
-- No caso de uma venda à vista, clientes cadastrados na loja e que compram mais
-de 5 CDs de uma só vez ganham um **desconto** de 1% para cada ano de cadastro.
-- No caso de uma venda a prazo...
-  - ...Para pagamento com cartão, os clientes com mais de 10 anos de cadastro na loja ganham o mesmo **desconto** das compras à vista.
-
-![Identificando os relacionamentos de dependência (extensão)](img/dcu_identificando_relacionamentos_de_dependencia_extensao.png "Identificando os relacionamentos de dependência (extensão)")
-
-**Inclusão**
-
-- Evita repetição ao fatorar uma atividade
-comum a dois ou mais casos de uso.
-- Um caso de uso pode incluir vários casos de uso.
-
-**Notação:**
-
-![Relacionamento de dependência (inclusão) - notação](img/dcu_relacionamento_de_dependencia_inclusao_notacao.png "Relacionamento de dependência (inclusão) - notação")
-
-**Exemplo: Loja de CDs**
-
-**Novos requisitos:**
-Para efetuar vendas ou administrar estoque, atendentes e gerentes terão que **validar** suas respectivas senhas de
-acesso ao sistema.
-
-![Identificando os relacionamentos de dependência (inclusão)](img/dcu_identificando_relacionamentos_de_dependencia_inclusao.png "Identificando os relacionamentos de dependência (inclusão)")
-
-**7.2.4 Fronteira do sistema**
-
-- Elemento opcional (mas essencial para um bom
-entendimento).
-- Serve para definir a área de atuação do sistema, ou seja, seus limites.
-
-**Identificando a fronteira do sistema**
-
-![Identificando a fronteira do sistema](img/dcu_identificando_a_fronteira_do_sistema.png "Identificando a fronteira do sistema")
+## 4.1 Modelo Conceitual Inicial (MER)
+
+<img src="./img/Modelagem_de_Dados.jpg" alt="Modelagem de Dados Inicial" width="800">
+
+## 4.2 Entidades Implementadas no Backend (Django ORM / PostgreSQL)
+
+Com a evolução do projeto (incluindo verificação de agências, editor de blocos, favoritos, login por código e contato), a modelagem implementada em `core/models/` conta com as seguintes tabelas no schema isolado `django`:
+
+| Entidade (`Model`) | Descrição |
+| :--- | :--- |
+| `User` | Usuários do sistema (`estudante` ou `agencia`), autenticação por e-mail, `username` único para perfil público, `avatar`, `is_staff` / `is_superuser`. |
+| `Pais` | Destinos disponíveis (`nome`, `nome_ingles`, `codigo_iso`, `regiao`, `custo_de_vida`, `idioma`, `cultura`, `descricao`, `imagem_url`, `intercambistas`, `universidades`, `ativo`) + M2M com `Tag`. |
+| `Estado` | Estados/regiões e `cidade_principal` vinculados a cada `Pais`. |
+| `Tag` | Marcadores de filtragem por `categoria`, `valor` e `label`, associados a `Pais` e `Agencia`. |
+| `Agencia` | Agências verificadas (`nome`, `descricao`, `como_funciona`, `contato`, `telefone`, `site`, `endereco`, `ativo`, `id_estado`, `usuario`, `imagem_capa` + foco X/Y, `layout` JSON e `conteudo_blocos` JSON) + M2M com `Pais` (`paises_atendidos`) e `Tag`. |
+| `ImagemGaleria` | Fotos individuais da galeria de cada `Agencia`, com ordenação (`ordem`). |
+| `Programa` | Catálogo compartilhado de tipos de intercâmbio (`nome`, `descricao`, `duracao_min`, `duracao_max`). |
+| `Plano` | Oferta concreta de um `Programa` por uma `Agencia`, com `preco`, `descricao` e itens inclusos (`inclui`). |
+| `Avaliacao` | Nota (1 a 5) e `comentario` de um `User` sobre uma `Agencia` (única por par usuário + agência). |
+| `Favorito` | Lista de países ou agências favoritados por cada `User` (`tipo`, `objeto_id`, `criado_em`). |
+| `SolicitacaoAgencia` | Pedido de entrada como conta Business (`dados da agência`, `responsável`, `documento` comprobatório em bucket privado, `status`, `motivo_recusa`, vínculo com `usuario_criado` e `agencia_criada`). |
+| `SolicitacaoPaisAdicional` | Pedido de uma `Agencia` já aprovada para passar a atender um novo `Pais`, sujeito à aprovação administrativa. |
+| `MensagemContato` | Mensagens enviadas pelo formulário público `/contato` (`publico`, `nome`, `email`, `nome_agencia`, `assunto`, `mensagem`, `lida`). |
+| `CodigoLogin` / `CodigoVerificacaoEmail` | Códigos temporários de 6 dígitos para login sem senha (OTP) e verificação de e-mail. |
+
+```mermaid
+erDiagram
+    USER ||--o| AGENCIA : "gerencia"
+    USER ||--o{ AVALIACAO : "escreve"
+    USER ||--o{ FAVORITO : "salva"
+    USER ||--o| SOLICITACAO_AGENCIA : "envia"
+
+    PAIS ||--o{ ESTADO : "possui"
+    ESTADO ||--o{ AGENCIA : "sedia"
+    PAIS }o--o{ AGENCIA : "paises_atendidos"
+    PAIS }o--o{ TAG : "classificado_por"
+    AGENCIA }o--o{ TAG : "classificada_por"
+
+    AGENCIA ||--o{ PLANO : "oferece"
+    PROGRAMA ||--o{ PLANO : "define"
+    AGENCIA ||--o{ IMAGEM_GALERIA : "exibe"
+    AGENCIA ||--o{ AVALIACAO : "recebe"
+    AGENCIA ||--o{ SOLICITACAO_PAIS_ADICIONAL : "solicita"
+    PAIS ||--o{ SOLICITACAO_PAIS_ADICIONAL : "destino_pedido"
+```
 
 ---
 
+# 5. Regras de Negócio
 
+- **RN001 — Cadastro de País:** Um país só pode ser cadastrado com nome, código ISO, custo de vida, idioma, cultura e descrição válidos.
+- **RN002 — Gestão do Catálogo Base:** Apenas administradores (`is_staff`) podem criar, editar ou remover países, estados, tags e programas compartilhados.
+- **RN003 — Verificação Prévia de Agências:** Uma agência não pode ser criada diretamente pela API pública; ela deve enviar uma solicitação com documento comprobatório (`/business/solicitar`), que só gera uma `Agencia` ativa após aprovação administrativa.
+- **RN004 — Países Atendidos sob Aprovação:** Uma agência aprovada só aparece na listagem dos países em que atua; para incluir novos destinos, envia uma solicitação de país adicional sujeita à moderação.
+- **RN005 — Integridade de Avaliações:** A nota de uma avaliação deve estar entre **1 e 5**, e cada usuário pode manter apenas **uma avaliação por agência** (novos envios atualizam a avaliação anterior, evitando manipulação de média).
+- **RN006 — Propriedade de Edição:** Usuários comuns só podem editar/excluir o próprio perfil, favoritos e avaliações; contas Business só podem alterar dados, layout, capa, galeria e planos da **própria** agência, sem permissão para alterar `usuario`, `ativo` ou escalar privilégios (`is_staff`/`is_superuser`).
+- **RN007 — Exibição de Catálogo Ativo:** Somente países e agências com `ativo = True` são exibidos nas listagens públicas (catálogo, mapa 3D, páginas de destino e depoimentos da home).
+- **RN008 — Integridade Referencial:** Países vinculados a solicitações ou dados ativos não podem ser removidos de forma inconsistente (`on_delete=PROTECT` nas solicitações); ao excluir uma conta Business, a agência vinculada também é removida para não deixar registros órfãos.
+- **RN009 — Proteção de Documentos Sensíveis:** Comprovantes enviados por agências são armazenados em bucket privado (`documentos-agencia`) e acessados apenas por administradores via URL assinada com expiração temporária (300 s), validando que o caminho pertence a uma solicitação real.
+- **RN010 — Privacidade de Dados Públicos:** Perfis públicos (`/usuarios/:username`) nunca expõem e-mail, permissões internas ou dados sensíveis de conta.
 
+---
+
+# 6. Requisitos Funcionais
+
+## Níveis de acesso
+- **Visitante:** navega pelo catálogo público, globo 3D, páginas de países, páginas de agências, perfis públicos e envia mensagens de contato ou solicitação de conta Business.
+- **Estudante (`estudante`):** todos os acessos de visitante, além de gerenciar perfil/avatar/senha, salvar favoritos, criar/editar/excluir suas próprias avaliações e excluir sua conta.
+- **Agência (`agencia` / Business):** acompanha análise da solicitação e, após aprovação, acessa o painel de métricas, edita dados institucionais, personaliza o layout/blocos/capa/galeria da página, gerencia planos e solicita novos países atendidos.
+- **Administrador (`is_staff` / `is_superuser`):** acessa `/admin` (painel web) e Django Admin para aprovar/recusar solicitações de agências e países adicionais, consultar comprovantes, gerenciar mensagens de contato e administrar o catálogo base.
+
+## Entradas e Gestão de Contas
+- **RF001 — Cadastro de Estudante:** permite ao visitante criar conta com nome, e-mail e senha (mínimo 8 caracteres), recebendo tokens JWT de acesso.
+- **RF002 — Autenticação (Senha e Código OTP):** permite login por e-mail/senha (`POST /api/token/`) ou por código temporário de 6 dígitos enviado por e-mail (`/api/auth/codigo/`), com opção *"Manter conectado"* e renovação automática de token (`/api/token/refresh/`).
+- **RF003 — Recuperação e Alteração de Senha:** permite solicitar link de redefinição por e-mail (`/esqueci-senha` e `/redefinir-senha`) e alterar a senha estando autenticado (`/profile`).
+- **RF004 — Edição de Perfil, Avatar e Exclusão de Conta:** permite atualizar nome, fazer upload de foto de perfil (armazenada no Supabase Storage) e excluir permanentemente a conta (`DELETE /api/usuarios/me/`).
+- **RF005 — Formulário de Contato:** permite a estudantes e agências enviarem mensagens pelo formulário `/contato`, armazenadas para acompanhamento administrativo.
+
+## Catálogo, Exploração e Interações do Estudante
+- **RF006 — Página Inicial com Estatísticas e Depoimentos Reais:** exibe indicadores calculados em tempo real do banco (`/api/estatisticas/`), destinos mais procurados e depoimentos reais de estudantes na seção *"Quem já foi"* (`/api/avaliacao/depoimentos/`).
+- **RF007 — Listagem e Detalhamento de Países:** exibe países por região (`/destinos`, `/regiao/:regiao`) e página completa de cada destino (`/pais/:id`) com custo de vida, cultura, idioma, cidades, programas e agências atuantes.
+- **RF008 — Globo 3D Interativo e Filtros (`/mapview`):** permite explorar destinos em um globo 3D interativo e filtrar países/agências por região, idioma e tags.
+- **RF009 — Página Pública da Agência (`/agencias/:id`):** exibe a página conforme o layout personalizado pela agência (hero em banner ou foto, descrição, *"Como funciona"*, galeria com lightbox em tela cheia, catálogo de planos, equipe com fotos, certificações, FAQ, vídeo, localização, redes sociais, WhatsApp e avaliações).
+- **RF010 — Avaliação de Agências:** permite ao estudante criar, atualizar ou remover sua avaliação (nota 1 a 5 e comentário) e consultar o histórico em *"Minhas avaliações"*.
+- **RF011 — Favoritos:** permite ao usuário autenticado favoritar e desfavoritar países e agências, listando-os em seu perfil.
+- **RF012 — Perfil Público (`/usuarios/:username`):** exibe o perfil público de estudantes (avaliações e estatísticas) ou de contas de agências (resumo e link para a página da agência).
+
+## Área GlobalBridge Business (Agências)
+- **RF013 — Solicitação de Conta Business (`/business/solicitar`):** permite enviar pedido de verificação com dados da agência, países atendidos, responsável, senha e upload do documento comprobatório, acompanhando o status em `/business/analise`.
+- **RF014 — Painel de Métricas da Agência (`/business`):** exibe nota média, distribuição de notas, total de favoritos (geral e últimos 30 dias), ranking dentro do país sede, indicador de completude da página, avaliações e favoritos recentes (`/api/agencia/:id/painel/`).
+- **RF015 — Edição de Dados Institucionais e Planos:** permite à agência atualizar informações de contato/descrição e criar, editar ou remover seus próprios planos (`Plano`) com programa, preço, descrição e itens inclusos.
+- **RF016 — Editor Modular de Página (`/business/editor`):** permite reordenar seções, trocar variantes (ex.: hero banner vs. foto), subir imagem de capa e ajustar ponto focal (X/Y), gerenciar fotos da galeria e preencher blocos opcionais (equipe com fotos, certificações, FAQ, vídeo, mapa, redes sociais e WhatsApp) com prévia em tempo real.
+- **RF017 — Solicitação de Países Adicionais:** permite à agência aprovada solicitar atuação em novos países.
+
+## Administração e Moderação
+- **RF018 — Painel Administrativo (`/admin`):** permite a administradores visualizar solicitações pendentes de agências e países adicionais, abrir comprovantes via URL assinada temporária, aprovar ou recusar pedidos (com motivo e envio de e-mail) e marcar mensagens de contato como lidas.
+- **RF019 — Administração Completa (Django Admin `/admin/`):** disponibiliza interface administrativa nativa do Django para gestão completa de países, estados, tags, programas, planos, agências, solicitações, usuários e mensagens.
+
+---
+
+# 7. Requisitos Não Funcionais
+
+- **RNF01 — Arquitetura Desacoplada:** comunicação entre frontend e backend realizada via API REST JSON (padrão HTTP + OpenAPI 3), com documentação interativa em `/api/doc/` (`drf-spectacular`).
+- **RNF02 — Stack Frontend:** desenvolvido em **Vue 3** (Composition API), **Vue Router**, **Vite**, **Globe.gl / D3 / TopoJSON** (mapa 3D), **GSAP / Lenis** (animações com respeito a `prefers-reduced-motion`), **Flaticon UIcons** e suporte a **PWA** (`vite-plugin-pwa`).
+- **RNF03 — Stack Backend:** desenvolvido em **Python 3** com **Django 5**, **Django REST Framework**, **SimpleJWT**, **WhiteNoise** e **Gunicorn**.
+- **RNF04 — Persistência e Isolamento de Banco de Dados:** banco relacional **PostgreSQL** hospedado no **Supabase**, conectado via Session Pooler com SSL obrigatório (`sslmode=require`) e tabelas do Django isoladas em schema dedicado (`DB_SCHEMA=django`) com usuário de menor privilégio (`django_app`).
+- **RNF05 — Armazenamento de Mídia em Nuvem:** uploads de avatares, capas, galerias e comprovantes persistidos no **Supabase Storage** via backend customizado em Django (`core/storage.py`), com bucket privado e URLs assinadas para documentos comprobatórios.
+- **RNF06 — Segurança e Controle de Acesso:** autenticação stateless via **JWT (Bearer)** com refresh automático, senhas com hash seguro do Django, validação de permissões por papel e por propriedade de recurso, `CORS_ALLOWED_ORIGINS` restrito ao domínio do frontend e proteção contra path traversal na assinatura de documentos.
+- **RNF07 — Privacidade e Conformidade (LGPD):** suporte à exclusão permanente de conta e dados associados pelo próprio usuário, além de separação estrita entre dados públicos e privados nos serializers.
+- **RNF08 — Responsividade e Acessibilidade:** interface adaptada para desktop, tablet e mobile, com navegação dedicada em telas menores, suporte a teclado (ex.: lightbox com `Escape`/setas), foco visível e landmarks semânticos.
+- **RNF09 — Compatibilidade de Navegadores:** homologado para versões atuais de Google Chrome, Brave, Microsoft Edge, Mozilla Firefox e Safari.
+- **RNF10 — Testabilidade e Qualidade:** cobertura de testes automatizados no backend (`python manage.py test core`) validando catálogo público, autenticação JWT, permissões de negócio, CRUD de planos, fluxo de solicitação/aprovação administrativa e integração de storage.
+- **RNF11 — Disponibilidade e Implantação Contínua:** deploy automatizado via GitHub — frontend na **Vercel** e backend no **Render** (com `build.sh` executando `ensure_schema`, `collectstatic`, `migrate` e `seed_globalbridge --if-empty`).
+
+---
+
+# 8. Diagrama de Casos de Uso
+
+```mermaid
+flowchart LR
+    V["Visitante"]
+    E["Estudante"]
+    B["Agência (Business)"]
+    A["Administrador"]
+
+    subgraph GB["Sistema GlobalBridge"]
+        UC1["Explorar destinos e globo 3D"]
+        UC2["Visualizar agência, galeria e avaliações"]
+        UC3["Ver perfil público e enviar contato"]
+        UC4["Criar conta e autenticar (JWT / OTP)"]
+        UC5["Solicitar verificação de agência"]
+
+        UC6["Gerenciar perfil, avatar e senha"]
+        UC7["Favoritar países e agências"]
+        UC8["Avaliar agências (criar/editar/excluir)"]
+        UC9["Excluir própria conta"]
+
+        UC10["Acompanhar painel e métricas Business"]
+        UC11["Personalizar página, capa, galeria e blocos"]
+        UC12["Gerenciar planos e preços"]
+        UC13["Solicitar novos países atendidos"]
+
+        UC14["Aprovar ou recusar agências e países"]
+        UC15["Consultar comprovantes assinados"]
+        UC16["Gerenciar catálogo base e mensagens"]
+    end
+
+    V --> UC1
+    V --> UC2
+    V --> UC3
+    V --> UC4
+    V --> UC5
+
+    E -.->|herda| V
+    E --> UC6
+    E --> UC7
+    E --> UC8
+    E --> UC9
+
+    B -.->|herda| V
+    B --> UC6
+    B --> UC9
+    B --> UC10
+    B --> UC11
+    B --> UC12
+    B --> UC13
+
+    A --> UC14
+    A --> UC15
+    A --> UC16
+```
+
+---
+
+# 9. Arquitetura, Tecnologias e Execução Local
+
+## 9.1 Arquitetura de Produção
+
+```mermaid
+flowchart LR
+    User["Navegador / PWA"] --> Front["Frontend Vue 3 + Vite (Vercel)"]
+    Front -->|"HTTPS + JWT (/api/...)"| Back["Backend Django 5 + DRF + Gunicorn (Render)"]
+    Back -->|"Session Pooler SSL (schema django)"| PG["PostgreSQL (Supabase)"]
+    Back -->|"REST API (service_role no servidor)"| ST["Supabase Storage (avatars, agencias, documentos-agencia)"]
+    Back -->|"E-mails transacionais"| Mail["Brevo API / SMTP"]
+```
+
+## 9.2 Principais Endpoints da API
+
+A especificação interativa completa está disponível em [Swagger UI (`/api/doc/`)](https://globalbridge-backend-1.onrender.com/api/doc/):
+- `GET /api/estatisticas/` — métricas agregadas da plataforma
+- `GET /api/paises/` · `GET /api/paises/mais-procurados/` · `GET /api/paises/{id}/` — destinos
+- `GET /api/agencia/` · `GET /api/agencia/{id}/` · `PATCH /api/agencia/{id}/` · `GET /api/agencia/{id}/painel/` — agências e painel Business
+- `PATCH /api/agencia/{id}/capa/` · `POST/DELETE /api/agencia/{id}/galeria/` — capa e galeria
+- `GET /api/programa/` · `GET/POST/PATCH/DELETE /api/plano/` — programas e planos
+- `GET /api/avaliacao/depoimentos/` · `GET /api/avaliacao/minhas/` · `POST/PATCH/DELETE /api/avaliacao/` — avaliações
+- `GET/POST/DELETE /api/favoritos/` — favoritos
+- `POST /api/contato/` — envio de mensagens de contato
+- `POST /api/registro/` · `POST /api/token/` · `POST /api/token/refresh/` · `GET/PATCH/DELETE /api/usuarios/me/` · `POST /api/usuarios/me/senha/` · `GET /api/usuarios/u/{username}/` — contas e autenticação
+- `POST /api/solicitacoes-agencia/` · `GET /api/solicitacoes-agencia/minha/` — verificação de agências
+- `GET /api/admin-painel/dados/` · `POST /api/admin-painel/solicitacoes-agencia/{id}/aprovar/` — moderação administrativa (`is_staff`)
+
+## 9.3 Como Executar Localmente
+
+### Backend (Django + DRF)
+```bash
+git clone https://github.com/globalbridgeorg/globalbridge-backend.git
+cd globalbridge-backend
+git checkout dev
+
+python -m venv .venv
+# Windows: .venv\Scripts\activate  |  Linux/Mac: source .venv/bin/activate
+pip install -r requirements.txt
+
+python manage.py migrate
+python manage.py seed_globalbridge
+python manage.py test core
+python manage.py runserver
+```
+> Sem `DATABASE_URL`, o backend roda automaticamente em SQLite local (`http://127.0.0.1:8000`).
+
+### Frontend (Vue 3 + Vite)
+```bash
+git clone https://github.com/globalbridgeorg/globalbridge-frontend.git
+cd globalbridge-frontend
+git checkout dev
+
+npm install
+npm run dev
+```
+> Em desenvolvimento local, o Vite faz proxy automático de `/api` e `/media` para `http://127.0.0.1:8000`.
+
+## 9.4 Conta de Demonstração (Avaliação)
+
+Para testar rapidamente as áreas **Business** (`/business`, `/business/editor`) e **Admin** (`/admin` e `/admin/` do Django):
+- **E-mail:** `demo@globalbridge.com`
+- **Senha:** `GlobalBridge2026!`
